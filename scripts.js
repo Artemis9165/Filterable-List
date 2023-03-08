@@ -1,18 +1,19 @@
 const userInput = document.querySelector('input')
-
-userInput.addEventListener('input',filterNames)
-
 const filterNames = () => {
-    const userValue = document.querySelector('input').value.toLowerCase;
+    const userValue = document.querySelector('input').value.toLowerCase();
+    console.log(userValue)
     const ulnames = document.querySelector('#names')
     const names = document.querySelectorAll('.collection-item')
 
     for(let i = 0; i<names.length; i++){
-        const name = document.querySelector('a');
-        if(name.value.toLowerCase() != userValue){
-            names[i].style.visibility = 'hidden'
-        } else {
-            names[i].style.visibility = 'visible'
+        const name = names[i].querySelector('a');
+        if(userValue == ""){
+            names[i].style.display = 'block'
+        }else if(name.innerText.toLowerCase().indexOf(userValue) > -1){
+            names[i].style.display = 'block'
+        } else{
+            names[i].style.display = 'none'
         }
     }
 }
+userInput.addEventListener('input',filterNames)
